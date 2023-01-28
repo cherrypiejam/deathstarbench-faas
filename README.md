@@ -9,6 +9,52 @@ and Kubernetes. You need a Kubernetes cluster, install on it OpenFaaS and other
 services (e.g., MongoDB) and then install DeathStarFaaS to the OpenFaaS
 deployment.
 
+## Quick Deploy
+
+### Install Packages
+
+```bash
+nix-shell
+```
+
+### Deploy Kubernetes Cluster
+
+```bash
+# Start a cluster and mount a local path for storage
+minikube start --driver=docker --mount --mount-string $HOME/host/:/mnt/host
+
+# Install OpenFaaS
+arkade install openfaas
+
+# Verify if OpenFaaS is running
+kubectl -n openfaas get deployments -l "release=openfaas, app=openfaas"
+
+# Forward the gateway to the host machine
+kubectl rollout status -n openfaas deploy/gateway
+kubectl port-forward -n openfaas svc/gateway 8080:8080 &
+
+# Deploy MongoDB and Redis
+kubectl apply -f config/mongodb.yaml
+kubectl apply -f config/redis.yaml
+```
+
+### Deploy DeathStarFaaS
+
+```bash
+# Log into the gateway
+PASSWORD=$(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-password}" | base64 --decode; echo)
+echo -n $PASSWORD | faas-cli login --username admin --password-stdin
+
+# Verify if faas-cli is authenticated
+faas-cli store deploy figlet
+faas-cli list
+
+# Deploy DeathStarFaaS
+# stack.yaml uses the Docker Hub as the remote registry. Running this command requires
+# to log into the Docker Hub. Alternatively, we can run a private registry locally.
+faas-cli up
+```
+
 ## Install OpenFaaS
 
 The current implementation is tested on
@@ -188,10 +234,10 @@ the gateway with no error messages from the function.
 
 > If we check the gateway deployment, we can see the environment variables
 > for timeouts:
-> 
+>
 > ```
 > kubectl describe deployment/gateway -n openfaas
-> Environment:                   
+> Environment:
 > read_timeout:             65s
 > write_timeout:            65s
 > upstream_timeout:         60s
@@ -276,7 +322,7 @@ Functions call each other via HTTP requests.
 
 ## Function Interface
 
-Inputs and outputs to DeathStarFaas functions are JSON strings.
+Inputs and outputs to DeathStarFaaS functions are JSON strings.
 
 Each function expects JSON inputs with particular fields. See comments in
 `handler.py` of each function for details.
@@ -396,7 +442,7 @@ Format:
         },
     "text": "string",
     "timestamp": integer,
-    "media": 
+    "media":
         {
             "media_id": "string",
             "media_type": "string"
