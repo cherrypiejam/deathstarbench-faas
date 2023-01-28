@@ -1,67 +1,67 @@
 version: 1.0
 provider:
   name: openfaas
-  gateway: http://40.119.49.149:8080
+  gateway: http://127.0.0.1:8080
 functions:
   register-user:
     lang: python3
     handler: ./register-user
-    image: ledgedash/register-user:latest
+    image: somefish1/register-user:latest
 
   register-user-with-id:
     lang: python3
     handler: ./register-user-with-id
-    image: ledgedash/register-user-with-id:latest
+    image: somefish1/register-user-with-id:latest
 
   get-user-id:
     lang: python3
     handler: ./get-user-id
-    image: ledgedash/get-user-id:latest
+    image: somefish1/get-user-id:latest
 
   user-service-login:
     lang: python3
     handler: ./user-service-login
-    image: ledgedash/user-service-login:latest
+    image: somefish1/user-service-login:latest
 
   social-graph-insert-user:
     lang: python3
     handler: ./social-graph-insert-user
-    image: ledgedash/social-graph-insert-user:latest
+    image: somefish1/social-graph-insert-user:latest
 
   social-graph-follow:
     lang: python3
     handler: ./social-graph-follow
-    image: ledgedash/social-graph-follow:latest
+    image: somefish1/social-graph-follow:latest
 
   social-graph-get-followers:
     lang: python3
     handler: ./social-graph-get-followers
-    image: ledgedash/social-graph-get-followers:latest
+    image: somefish1/social-graph-get-followers:latest
 
   social-graph-get-followees:
     lang: python3
     handler: ./social-graph-get-followees
-    image: ledgedash/social-graph-get-followees:latest
+    image: somefish1/social-graph-get-followees:latest
 
   social-graph-unfollow:
     lang: python3
     handler: ./social-graph-unfollow
-    image: ledgedash/social-graph-unfollow:latest
+    image: somefish1/social-graph-unfollow:latest
 
   social-graph-unfollow-with-username:
     lang: python3
     handler: ./social-graph-unfollow-with-username
-    image: ledgedash/social-graph-unfollow-with-username:latest
+    image: somefish1/social-graph-unfollow-with-username:latest
 
   social-graph-follow-with-username:
     lang: python3
     handler: ./social-graph-follow-with-username
-    image: ledgedash/social-graph-follow-with-username:latest
+    image: somefish1/social-graph-follow-with-username:latest
 
   media-front-upload-media:
     lang: dockerfile
     handler: ./media-front-upload-media
-    image: ledgedash/media-front-upload-media:latest
+    image: somefish1/media-front-upload-media:latest
     environment:
         BLOB_STORAGE_CONNECTION_STRING: "DefaultEndpointsProtocol=https;AccountName=davidhliu2020sfaas;AccountKey=dNrgfTFfCcINupXC0tnLaDxmkVeFnQhq0cFn8UO+WwOlzYiyLuZSY6bwSmAt4TkehFCkFBuNLgDvTAEBVERPKQ==;EndpointSuffix=core.windows.net"
         CONTAINER_NAME: "deathstar-media"
@@ -69,7 +69,7 @@ functions:
   compose-post-frontend:
     lang: python3
     handler: ./compose-post-frontend
-    image: ledgedash/compose-post-frontend:latest
+    image: somefish1/compose-post-frontend:latest
     environment:
         read_timeout: 20s
         write_timeout: 20s
@@ -78,7 +78,7 @@ functions:
   user-service-upload-creator-with-user-id:
     lang: python3
     handler: ./user-service-upload-creator-with-user-id
-    image: ledgedash/user-service-upload-creator-with-user-id:latest
+    image: somefish1/user-service-upload-creator-with-user-id:latest
     environment:
         read_timeout: 20s
         write_timeout: 20s
@@ -87,7 +87,7 @@ functions:
   unique-id-service-upload-unique-id:
     lang: python3
     handler: ./unique-id-service-upload-unique-id
-    image: ledgedash/unique-id-service-upload-unique-id:latest
+    image: somefish1/unique-id-service-upload-unique-id:latest
     environment:
         read_timeout: 20s
         write_timeout: 20s
@@ -96,7 +96,7 @@ functions:
   media-service-upload-media:
     lang: python3
     handler: ./media-service-upload-media
-    image: ledgedash/media-service-upload-media:latest
+    image: somefish1/media-service-upload-media:latest
     environment:
         read_timeout: 20s
         write_timeout: 20s
@@ -105,7 +105,7 @@ functions:
   text-service-upload-text:
     lang: python3
     handler: ./text-service-upload-text
-    image: ledgedash/text-service-upload-text:latest
+    image: somefish1/text-service-upload-text:latest
     environment:
         read_timeout: 20s
         write_timeout: 20s
@@ -114,7 +114,7 @@ functions:
   url-shorten-service-upload-urls:
     lang: python3
     handler: ./url-shorten-service-upload-urls
-    image: ledgedash/url-shorten-service-upload-urls:latest
+    image: somefish1/url-shorten-service-upload-urls:latest
     environment:
         MONGO_URI: "mongodb://mongo-0.mongo.default"
         read_timeout: 20s
@@ -124,7 +124,7 @@ functions:
   user-mention-service-upload-user-mentions:
     lang: python3
     handler: ./user-mention-service-upload-user-mentions
-    image: ledgedash/user-mention-service-upload-user-mentions:latest
+    image: somefish1/user-mention-service-upload-user-mentions:latest
     environment:
         MONGO_URI: "mongodb://mongo-0.mongo.default"
         read_timeout: 20s
@@ -135,7 +135,7 @@ functions:
   compose-post-service-upload-creator:
     lang: python3
     handler: ./compose-post-service-upload-creator
-    image: ledgedash/compose-post-service-upload-creator:latest
+    image: somefish1/compose-post-service-upload-creator:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -148,7 +148,7 @@ functions:
   compose-post-service-upload-unique-id:
     lang: python3
     handler: ./compose-post-service-upload-unique-id
-    image: ledgedash/compose-post-service-upload-unique-id:latest
+    image: somefish1/compose-post-service-upload-unique-id:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -162,7 +162,7 @@ functions:
   compose-post-service-upload-media:
     lang: python3
     handler: ./compose-post-service-upload-media
-    image: ledgedash/compose-post-service-upload-media:latest
+    image: somefish1/compose-post-service-upload-media:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -176,7 +176,7 @@ functions:
   compose-post-service-upload-urls:
     lang: python3
     handler: ./compose-post-service-upload-urls
-    image: ledgedash/compose-post-service-upload-urls:latest
+    image: somefish1/compose-post-service-upload-urls:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -190,7 +190,7 @@ functions:
   compose-post-service-upload-user-mentions:
     lang: python3
     handler: ./compose-post-service-upload-user-mentions
-    image: ledgedash/compose-post-service-upload-user-mentions:latest
+    image: somefish1/compose-post-service-upload-user-mentions:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -203,7 +203,7 @@ functions:
   compose-post-service-upload-text:
     lang: python3
     handler: ./compose-post-service-upload-text
-    image: ledgedash/compose-post-service-upload-text:latest
+    image: somefish1/compose-post-service-upload-text:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -216,7 +216,7 @@ functions:
   compose-post-service-compose-and-upload:
     lang: python3
     handler: ./compose-post-service-compose-and-upload
-    image: ledgedash/compose-post-service-compose-and-upload:latest
+    image: somefish1/compose-post-service-compose-and-upload:latest
     environment:
         REDIS_SERVER: "ds-redis.default"
         REDIS_PORT: 6379
@@ -229,7 +229,7 @@ functions:
   post-storage-service-store-post:
     lang: python3
     handler: ./post-storage-service-store-post
-    image: ledgedash/post-storage-service-store-post:latest
+    image: somefish1/post-storage-service-store-post:latest
     environment:
         MONGO_URI: "mongodb://mongo-0.mongo.default"
         read_timeout: 20s
@@ -239,7 +239,7 @@ functions:
   post-storage-service-read-posts:
     lang: python3
     handler: ./post-storage-service-read-posts
-    image: ledgedash/post-storage-service-read-posts:latests
+    image: somefish1/post-storage-service-read-posts:latests
     environment:
         MONGO_URI: "mongodb://mongo-0.mongo.default"
         REDIS_SERVER: "ds-redis.default"
@@ -252,7 +252,7 @@ functions:
   user-timeline-service-write-user-timeline:
     lang: python3
     handler: ./user-timeline-service-write-user-timeline
-    image: ledgedash/user-timeline-service-write-user-timeline:latest
+    image: somefish1/user-timeline-service-write-user-timeline:latest
     environment:
         MONGO_URI: "mongodb://mongo-0.mongo.default"
         REDIS_SERVER: "ds-redis.default"
@@ -266,7 +266,7 @@ functions:
   user-timeline-service-read-user-timeline:
     lang: python3
     handler: ./user-timeline-service-read-user-timeline
-    image: ledgedash/user-timeline-service-read-user-timeline:latest
+    image: somefish1/user-timeline-service-read-user-timeline:latest
     environment:
         MONGO_URI: "mongodb://mongo-0.mongo.default"
         REDIS_SERVER: "ds-redis.default"
@@ -280,10 +280,10 @@ functions:
   user-timeline-read-frontend:
     lang: python3
     handler: ./user-timeline-read-frontend
-    image: ledgedash/user-timeline-read-frontend:latest
+    image: somefish1/user-timeline-read-frontend:latest
 
   ds-net:
     lang: dockerfile
     handler: ./ds-net
-    image: ledgedash/ds-net:latest
+    image: somefish1/ds-net:latest
 

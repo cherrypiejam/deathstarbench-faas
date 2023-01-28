@@ -1,3 +1,2 @@
 names
-random-username
 pytest
