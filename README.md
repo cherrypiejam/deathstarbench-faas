@@ -53,6 +53,9 @@ faas-cli list
 # stack.yaml uses the Docker Hub as the remote registry. Running this command requires
 # to log into the Docker Hub. Alternatively, we can run a private registry locally.
 faas-cli up
+
+# Ready to go
+# curl http://127.0.0.1:8080/function/register-user -d "{\"username\":\"barryallen\",\"first_name\":\"Barry\",\"last_name\":\"Allen\",\"password\":\"B3qu1c0rb3dEad\"}"
 ```
 
 ## Install OpenFaaS
